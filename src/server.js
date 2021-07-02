@@ -12,9 +12,6 @@ app.use(express.json())
 app.use(express.urlencoded({extended:true}))
 app.use(logger);
 
-function start(port) {
-    app.listen(port, () => console.log(`Listening on ${port}`))
-};
 
 app.get('/', homeHandler);
 app.get('/bad', badHandler);
@@ -39,6 +36,10 @@ function badHandler(req, res){
 
 app.use('*', notFoundHandler);
 app.use(errorHandler);
+
+function start(port) {
+    app.listen(port, () => console.log(`Listening on ${port}`))
+};
 
 module.exports = {
     app: app,
